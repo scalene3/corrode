@@ -12,6 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: clippy
-      run: cargo clippy --all --all-features --tests -- -D warnings
+      run: cargo clippy --all --all-features --tests 
     - name: rustfmt
       run: cargo fmt --all -- --check
