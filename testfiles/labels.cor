@@ -1,0 +1,4 @@
+l1: push 255
+l2: push 255
+l3: add
+l4: ret

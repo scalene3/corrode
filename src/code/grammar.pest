@@ -1,0 +1,26 @@
+WHITESPACE = _{ " " | "\t" }
+
+number       = @{ ASCII_DIGIT+ }
+byte         = @{ ASCII_DIGIT{1, 3} }
+word         = @{ ASCII_ALPHANUMERIC+ }
+label        =  { word ~ ":" }
+jmp_to_label = _{ "$" ~ word }
+address      = _{ ("%" ~ number) }
+
+command  = _{ nop | add | sub | mul | div | modulus | print | printstr | ret | valu8 | exit | jmp | jnz | swp }
+nop      =  { ^"nop" }
+add      =  { ^"add" }
+sub      =  { ^"sub" }
+mul      =  { ^"mul" }
+div      =  { ^"div" }
+modulus  =  { ^"mod" }
+print    =  { ^"print" }
+printstr =  { ^"pchar" }
+valu8    =  { ^"push" ~ byte }
+swp      =  { ^"swp" }
+exit     =  { ^"exit" }
+jmp      =  { ^"jmp" ~ (jmp_to_label | address) }
+jnz      =  { ^"jnz" ~ (jmp_to_label | address) }
+ret      =  { ^"ret" }
+
+file = { SOI ~ (label? ~ command? ~ NEWLINE)+ ~ EOI }

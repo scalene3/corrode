@@ -1,0 +1,17 @@
+[package]
+name = "corrode"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+bytemuck = "1.23.2"
+colored = "3.0.0"
+derive = "1.0.0"
+num = "0.4.3"
+pest = "2.8.1"
+pest_derive = "2.8.1"
+anyhow = "1.0.99"
+thiserror = "2.0.16"
+
+[profile.dev]
+opt-level = 3
