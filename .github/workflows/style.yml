@@ -26,6 +26,8 @@ jobs:
     name: cargo fmt
     runs-on: ubuntu-latest
     steps:
+      - name: install rustfmt
+        run: rustup component add rustfmt
       - name: Check formatting
         run: cargo fmt --all --check
       - name: Checkout code
