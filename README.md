@@ -19,7 +19,7 @@ EXIT
 ## TODO
 
 - [ ] Comments
-- [-] Other Stack based commands
+- [ ] Other Stack based commands
     - [x] dup
     - [x] swap
     - [x] pop
