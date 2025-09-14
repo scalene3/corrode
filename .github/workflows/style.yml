@@ -3,15 +3,39 @@ on:
   push:
     branches: [ main ]
 
-env:
-  CARGO_TERM_COLOR: always
 
 jobs:
-  build_and_test:
-    name: corrode
+  clippy:
+    name: cargo clippy
     runs-on: ubuntu-latest
     steps:
-    - name: clippy
-      run: cargo clippy --all --all-features --tests 
-    - name: rustfmt
-      run: cargo fmt --all -- --check
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - name: Run Clippy
+        run: cargo clippy --all-targets -- -D warnings
+  formatting:
+    name: cargo fmt
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: install rustfmt
+        run: rustup component add rustfmt
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+      
