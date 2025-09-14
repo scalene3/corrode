@@ -29,13 +29,16 @@ pub fn parse_code(input_file: &str) -> Result<Vec<u8>, io::Error> {
             Rule::div => code.push(0x04),
             Rule::modulus => code.push(0x05),
             Rule::print => code.push(0x10),
-            Rule::printstr => code.push(0x11),
+            Rule::pchar => code.push(0x11),
             Rule::ret => code.push(0x12),
             Rule::valu8 => {
                 code.push(0x20);
                 let value: u8 = line.into_inner().as_str().parse::<u8>().unwrap();
                 code.push(value)
             }
+            Rule::swp => code.push(0x21),
+            Rule::pop => code.push(0x22),
+            Rule::dup => code.push(0x23),
             Rule::jmp => {
                 let inner_rule = line.into_inner().next().unwrap();
                 code.push(0x30);

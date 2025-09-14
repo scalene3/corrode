@@ -19,10 +19,11 @@ EXIT
 ## TODO
 
 - [ ] Comments
-- [ ] Other Stack based commands
-    - [ ] dup
-    - [ ] swap
-    - [ ] pop
+- [-] Other Stack based commands
+    - [x] dup
+    - [x] swap
+    - [x] pop
+    - [ ] more?
 - [ ] Improved string handling
 - [ ] Improved array handling
 - [ ] Type system

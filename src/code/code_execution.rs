@@ -89,6 +89,23 @@ impl<T: ToPrimitive + NumOps + Display + TryInto<u8> + From<u8> + Integer + Clon
                         self.idx += 1;
                     }
                 }
+                0x21 => {
+                    self.idx += 1;
+                    let first = self.pop()?;
+                    let second = self.pop()?;
+                    self.push(first)?;
+                    self.push(second)?
+                }
+                0x22 => {
+                    self.idx += 1;
+                    let _ = self.pop();
+                }
+                0x23 => {
+                    self.idx += 1;
+                    let top = self.pop()?;
+                    self.push(top.clone())?;
+                    self.push(top)?;
+                }
                 0x30 => self.idx = code[self.idx + 1] as usize,
                 0x31 => match self.peek() {
                     Some(top) if top != &0.into() => self.idx = code[self.idx + 1] as usize,
